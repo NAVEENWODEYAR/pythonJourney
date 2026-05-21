@@ -17,3 +17,19 @@ print("Text in Python must be inside quotes. You can use either double quotes or
 # Print Without a New Line
 print("Hello World!", end="  ")
 print("I will print on the same line.")
+
+
+# print() function to display numbers: unlike text, we don't put numbers inside quotes:
+print(1);
+print('Today (22-05-2026) is the',1,'day(Friday) of my python journey.')
+
+
+
+
+"""
+This is a comment
+written in
+more than just one line
+"""
+print("Multi line comment");
+print("Next chapter :Python Variables");
