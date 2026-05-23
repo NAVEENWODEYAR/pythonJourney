@@ -125,3 +125,5 @@ print('====================')
 print('====================')
 print('Hello', 'World')
 
+
+print('next session - Python Data Types')
