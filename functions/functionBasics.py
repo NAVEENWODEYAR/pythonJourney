@@ -82,11 +82,19 @@ introduce()
 introduce("Alice")
 
 # Types of functions
-print("\nTypes of Functions in Python:")
+print("\nTypes of Functions in Python:\n")
 print("1. Built-in Functions (print(), len(), input())")
 print("2. User-defined Functions")
 print("3. Anonymous (Lambda) Functions")
 print("4. Recursive Functions")
 
-print("\nConclusion:")
+print("\nConclusion:\n")
 print("Functions make programs modular, reusable, and easier to understand.")
+print()
+num = int(input("Enter a number: "))
+factorial = 1
+
+for i in range(1, num + 1):
+    factorial *= i
+
+print("Factorial =", factorial)
