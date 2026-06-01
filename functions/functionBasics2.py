@@ -105,9 +105,9 @@ print("-" * 50)
 
 def print_numbers(n):
     """
-    Prints numbers from 1 to n.
+    Prints numbers from 0 to n.
     """
-    for i in range(1, n + 1):
+    for i in range(0, n + 1):
         print(i, end=" ")
     print()  # Move to next line
 
@@ -122,7 +122,7 @@ print("-" * 50)
 
 def check_even_odd(number):
     """
-    Determines whether a number is even or odd.
+    Determines whether a number is even or odd number.
     """
     if number % 2 == 0:
         return "Even"
