@@ -132,9 +132,9 @@ marks = np.random.randint(35, 101, size=10)
 
 print("Marks:", marks)
 
-print("Highest Mark :", marks.max())
-print("Lowest Mark  :", marks.min())
-print("Average Mark :", marks.mean())
+print("Highest Mark =", marks.max())
+print("Lowest Mark  =", marks.min())
+print("Average Mark =", marks.mean())
 
 # ----------------------------------------------------------
 # End of Program
