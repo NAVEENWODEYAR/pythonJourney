@@ -17,5 +17,6 @@ gross_salary = np.array([25000, 30000, 45000, 50000, 60000])
 net_salary_result = net_salary_ufunc(gross_salary)
 
 # Display results
+print("user defined function")
 print("Employee Gross Salaries :", gross_salary)
 print("Employee Net Salaries   :", net_salary_result)
