@@ -32,3 +32,35 @@ length = find_length(user_string)
 
 # Display the result
 print("The length of the string is:", length)
+
+
+# ---------------- Test Cases ----------------
+
+print("\n========== Test Cases ==========")
+
+# List of test cases
+test_cases = [
+    "Python",
+    "Hello World",
+    "12345",
+    "OpenAI GPT",
+    "",
+    "A",
+    "Python@123"
+]
+
+# Execute each test case
+for i, test in enumerate(test_cases, start=1):
+
+    expected = len(test)          # Expected result
+    actual = find_length(test)    # Function output
+
+    print(f"\nTest Case {i}")
+    print(f"Input    : '{test}'")
+    print(f"Expected : {expected}")
+    print(f"Output   : {actual}")
+
+    if expected == actual:
+        print("Result   : PASS")
+    else:
+        print("Result   : FAIL")
