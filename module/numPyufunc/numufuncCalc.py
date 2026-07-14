@@ -1,39 +1,61 @@
-# Calculator using NumPy Universal Functions (ufunc)
+# Calculator Program Using NumPy Universal Functions (ufunc)
 
 import numpy as np
 
-# Take two numbers as input from the user
+
+def calculator(num1, num2, choice):
+    """
+    Performs arithmetic operations using NumPy ufuncs.
+
+    Parameters:
+        num1 (float): First number
+        num2 (float): Second number
+        choice (int): Operation choice
+                      1 - Addition
+                      2 - Subtraction
+                      3 - Multiplication
+                      4 - Division
+
+    Returns:
+        Result of the operation or an error message.
+    """
+
+    if choice == 1:
+        return np.add(num1, num2)
+
+    elif choice == 2:
+        return np.subtract(num1, num2)
+
+    elif choice == 3:
+        return np.multiply(num1, num2)
+
+    elif choice == 4:
+        if num2 == 0:
+            return "Error: Division by zero is not allowed."
+        return np.divide(num1, num2)
+
+    else:
+        return "Invalid choice! Please enter a number between 1 and 4."
+
+
+# ---------------- Main Program ----------------
+
+print("===== NumPy Ufunc Calculator =====")
+
+# Get user input
 num1 = float(input("Enter first number: "))
 num2 = float(input("Enter second number: "))
 
-# Display the menu
 print("\nChoose an operation:")
 print("1. Addition")
 print("2. Subtraction")
 print("3. Multiplication")
 print("4. Division")
 
-choice = input("Enter your choice (1-4): ")
+choice = int(input("Enter your choice (1-4): "))
 
-# Perform the selected operation using NumPy ufuncs
-if choice == "1":
-    result = np.add(num1, num2)          # Adds two numbers
-    print("Result =", result)
+# Call the calculator function
+result = calculator(num1, num2, choice)
 
-elif choice == "2":
-    result = np.subtract(num1, num2)     # Subtracts second number from first
-    print("Result =", result)
-
-elif choice == "3":
-    result = np.multiply(num1, num2)     # Multiplies two numbers
-    print("Result =", result)
-
-elif choice == "4":
-    if num2 != 0:
-        result = np.divide(num1, num2)   # Divides first number by second
-        print("Result =", result)
-    else:
-        print("Error: Division by zero is not allowed.")
-
-else:
-    print("Invalid choice! Please select a number between 1 and 4.")
+# Display the result
+print("\nResult:", result)
