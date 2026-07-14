@@ -3,6 +3,7 @@
 
 import math
 
+
 def display_definition():
     """
     Displays the definition of square root and cube root.
@@ -53,7 +54,50 @@ if choice == 1:
         print("Square Root =", square_root(number))
     else:
         print("Square root of a negative number is not a real number.")
+
 elif choice == 2:
     print("Cube Root =", cube_root(number))
+
 else:
     print("Invalid choice!")
+
+
+# ===================================================
+# LeetCode-Style Test Cases
+# ===================================================
+
+print("\n========== Test Cases ==========")
+
+test_cases = [
+    (25, 1, 5.0),      # Square Root
+    (64, 1, 8.0),      # Square Root
+    (27, 2, 3.0),      # Cube Root
+    (125, 2, 5.0),     # Cube Root
+    (-16, 1, "Square root of a negative number is not a real number."),
+    (10, 3, "Invalid choice!")
+]
+
+for i, (num, operation, expected) in enumerate(test_cases, start=1):
+
+    print(f"\nTest Case {i}")
+    print(f"Input: number = {num}, choice = {operation}")
+
+    if operation == 1:
+        if num >= 0:
+            output = square_root(num)
+            passed = abs(output - expected) < 1e-6
+        else:
+            output = "Square root of a negative number is not a real number."
+            passed = output == expected
+
+    elif operation == 2:
+        output = cube_root(num)
+        passed = abs(output - expected) < 1e-6
+
+    else:
+        output = "Invalid choice!"
+        passed = output == expected
+
+    print("Expected:", expected)
+    print("Output  :", output)
+    print("Result  :", "PASS" if passed else "FAIL")
