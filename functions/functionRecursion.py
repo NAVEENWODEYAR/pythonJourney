@@ -2,40 +2,78 @@
 # RECURSION PROGRAM - FACTORIAL OF A NUMBER
 # =====================================================
 
-# Factorial of n (written as n!) means:
-# n! = n × (n-1) × (n-2) × ... × 1
-# Example: 5! = 5 × 4 × 3 × 2 × 1 = 120
+class Solution:
+    """
+    Calculates the factorial of a number using recursion.
+    """
 
-# We will solve this using RECURSION
-# Recursion means a function calling itself
+    def factorial(self, n: int) -> int:
+        """
+        Returns the factorial of n.
 
-def factorial(n):
+        Base Case:
+            0! = 1
+            1! = 1
 
-    # -------------------------------
-    # BASE CONDITION (VERY IMPORTANT)
-    # -------------------------------
-    # This stops the recursion.
-    # Without this, function will run forever.
-    if n == 0 or n == 1:
-        return 1
+        Recursive Case:
+            n! = n * (n - 1)!
+        """
 
-    # -------------------------------
-    # RECURSIVE CASE
-    # -------------------------------
-    # Function calls itself with smaller value (n - 1)
-    # This breaks the problem into smaller subproblems
-    return n * factorial(n - 1)
+        # Base condition to stop recursion
+        if n == 0 or n == 1:
+            return 1
+
+        # Recursive call
+        return n * self.factorial(n - 1)
 
 
-# -------------------------------
-# MAIN PROGRAM
-# -------------------------------
+# =====================================================
+# TEST CASES
+# =====================================================
 
-# Take input from user
-num = int(input("Enter a number: "))
+def run_tests():
+    solution = Solution()
 
-# Call recursive function
-result = factorial(num)
+    # Test cases in the format:
+    # (input, expected_output)
+    test_cases = [
+        (0, 1),
+        (1, 1),
+        (2, 2),
+        (3, 6),
+        (5, 120),
+        (6, 720),
+        (8, 40320),
+        (10, 3628800)
+    ]
 
-# Print final result
-print("Factorial of", num, "is", result)
+    passed = 0
+
+    # Execute each test case
+    for i, (num, expected) in enumerate(test_cases, start=1):
+
+        # Get the actual result
+        actual = solution.factorial(num)
+
+        # Compare expected and actual output
+        if actual == expected:
+            print(f"Test Case {i} PASSED")
+            passed += 1
+        else:
+            print(f"Test Case {i} FAILED")
+            print(f"Input    : {num}")
+            print(f"Expected : {expected}")
+            print(f"Actual   : {actual}")
+
+    # Display summary
+    print("\n--------------------------------")
+    print(f"Passed {passed} out of {len(test_cases)} test cases.")
+    print("--------------------------------")
+
+
+# =====================================================
+# DRIVER CODE
+# =====================================================
+
+if __name__ == "__main__":
+    run_tests()
