@@ -1,56 +1,134 @@
-# Program to calculate tax based on salary
+class IncomeTaxCalculator:
 
-class Solution:
-    def calculateTax(self, salary: float) -> float:
-        """
-        Calculate income tax based on salary slabs.
+    def __init__(self):
+        self.salary = 0
+        self.salary_income = 0
+        self.other_income = 0
+        self.bank_interest = 0
+        self.tax_regime = ""
+        self.tds_paid = 0
 
-        Slabs:
-        - Up to 250000       : 0%
-        - 250001 - 500000    : 5%
-        - 500001 - 1000000   : 20%
-        - Above 1000000      : 30%
-        """
+    def get_input(self):
 
-        if salary <= 250000:
-            return 0.0
-        elif salary <= 500000:
-            return (salary - 250000) * 0.05
-        elif salary <= 1000000:
-            return (250000 * 0.05) + (salary - 500000) * 0.20
+        print("========== Income Tax Calculator ==========")
+
+        self.salary = float(input("1. Annual Salary: ₹"))
+        self.tax_regime = input("2. Tax Regime (old/new): ").strip().lower()
+
+        self.salary_income = float(input("3. Income from Salary: ₹"))
+        self.other_income = float(input("4. Income from Other Sources: ₹"))
+        self.bank_interest = float(input("5. Income from Bank Interest / FD: ₹"))
+
+        self.tds_paid = float(input("6. Tax Already Paid (TDS): ₹"))
+
+    def get_standard_deduction(self):
+
+        # FY 2025-26
+        if self.tax_regime == "new":
+            return 75000
         else:
-            return (250000 * 0.05) + (500000 * 0.20) + (salary - 1000000) * 0.30
+            return 50000
 
+    def taxable_income(self):
 
-# ----------------------------
-# LeetCode-style Test Cases
-# ----------------------------
-def run_tests():
-    solution = Solution()
+        gross = (
+            self.salary_income
+            + self.other_income
+            + self.bank_interest
+        )
 
-    test_cases = [
-        # (salary, expected_tax)
-        (200000, 0.0),
-        (250000, 0.0),
-        (300000, 2500.0),
-        (500000, 12500.0),
-        (750000, 62500.0),
-        (1000000, 112500.0),
-        (1200000, 172500.0),
-        (1500000, 262500.0),
-    ]
+        deduction = self.get_standard_deduction()
 
-    for i, (salary, expected) in enumerate(test_cases, 1):
-        result = solution.calculateTax(salary)
-        status = "PASS" if abs(result - expected) < 1e-6 else "FAIL"
+        taxable = max(0, gross - deduction)
 
-        print(f"Test Case {i}:")
-        print(f"Salary   = {salary}")
-        print(f"Expected = {expected}")
-        print(f"Output   = {result}")
-        print(f"Result   = {status}")
-        print("-" * 40)
+        return taxable
+
+    def calculate_tax(self, income):
+
+        tax = 0
+
+        if self.tax_regime == "new":
+
+            slabs = [
+                (400000, 0),
+                (800000, 0.05),
+                (1200000, 0.10),
+                (1600000, 0.15),
+                (2000000, 0.20),
+                (2400000, 0.25),
+            ]
+
+            previous = 0
+
+            for limit, rate in slabs:
+
+                if income > limit:
+                    tax += (limit - previous) * rate
+                    previous = limit
+                else:
+                    tax += (income - previous) * rate
+                    return max(0, tax)
+
+            tax += (income - 2400000) * 0.30
+
+        else:
+
+            if income <= 250000:
+                tax = 0
+
+            elif income <= 500000:
+                tax = (income - 250000) * 0.05
+
+            elif income <= 1000000:
+                tax = (
+                    250000 * 0.05
+                    + (income - 500000) * 0.20
+                )
+
+            else:
+                tax = (
+                    250000 * 0.05
+                    + 500000 * 0.20
+                    + (income - 1000000) * 0.30
+                )
+
+        return tax
+
+    def print_summary(self):
+
+        taxable = self.taxable_income()
+
+        tax = self.calculate_tax(taxable)
+
+        cess = tax * 0.04
+
+        total_tax = tax + cess
+
+        balance = total_tax - self.tds_paid
+
+        print("\n========== TAX SUMMARY ==========")
+
+        print(f"Tax Regime                 : {self.tax_regime.title()}")
+        print(f"Gross Income               : ₹{self.salary_income + self.other_income + self.bank_interest:,.2f}")
+        print(f"Standard Deduction         : ₹{self.get_standard_deduction():,.2f}")
+        print(f"Total Taxable Income       : ₹{taxable:,.2f}")
+        print(f"Income Tax                 : ₹{tax:,.2f}")
+        print(f"Health & Education Cess    : ₹{cess:,.2f}")
+        print(f"Total Tax                  : ₹{total_tax:,.2f}")
+        print(f"Tax Already Paid (TDS)     : ₹{self.tds_paid:,.2f}")
+
+        if balance > 0:
+            print(f"Balance Tax Payable        : ₹{balance:,.2f}")
+            print("Refund                     : ₹0.00")
+        else:
+            print("Balance Tax Payable        : ₹0.00")
+            print(f"Refund                     : ₹{-balance:,.2f}")
 
 
 if __name__ == "__main__":
-    run_tests()
+
+    calculator = IncomeTaxCalculator()
+
+    calculator.get_input()
+
+    calculator.print_summary()
