@@ -29,4 +29,4 @@ employee_pf, total_monthly, retirement_amount = calculate_pf(
 print("\n------ PF Calculation ------")
 print(f"Monthly Employee PF Contribution : ₹{employee_pf:.2f}")
 print(f"Monthly Total Contribution       : ₹{total_monthly:.2f}")
-print(f"Total Amount at Retirement       : ₹{retirement_amount:.2f}")
+print(f"Total Amount at Retirement       : ₹{retirement_amount:.2f}")   
