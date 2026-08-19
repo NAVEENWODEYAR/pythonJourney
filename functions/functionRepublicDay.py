@@ -26,7 +26,7 @@ print("=" * 65)
 print("🇮🇳🇮🇳🇮🇳       HAPPY REPUBLIC DAY       🇮🇳🇮🇳🇮🇳")
 print("=" * 65)
 
-print("\nWelcome to the Republic Day Information Program!")
+print("\nWelcome to the Republic Day Celeberation!")
 print("Let us learn about the history and people behind our Constitution.\n")
 
 
