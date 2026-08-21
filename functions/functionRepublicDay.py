@@ -39,11 +39,11 @@ print("📚 BASIC INFORMATION")
 print("=" * 65)
 
 print("🇮🇳 Country              : India")
-print("📅 Republic Day         : 26 January")
-print("🎉 First Republic Day   : 26 January 1950")
-print("📜 Constitution Adopted : 26 November 1949")
-print("📜 Constitution Enforced: 26 January 1950")
-print("🎊 Current Republic Day : " + str(republic_day_number) + "th Republic Day")
+print("1. Republic Day         : 26 January")
+print("2. First Republic Day   : 26 January 1950")
+print("3. Constitution Adopted : 26 November 1949")
+print("4. Constitution Enforced: 26 January 1950")
+print("5. Current Republic Day : " + str(republic_day_number) + "th Republic Day")
 
 
 # ------------------------------------------------------------
